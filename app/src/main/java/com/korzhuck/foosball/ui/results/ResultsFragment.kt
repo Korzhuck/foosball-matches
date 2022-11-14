@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.korzhuck.foosball.databinding.FragmentResultsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultsFragment : Fragment() {
+    private val viewModel : ResultsViewModel by viewModels()
 
     private var _binding: FragmentResultsBinding? = null
 
@@ -22,14 +25,12 @@ class ResultsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val resultsViewModel =
-            ViewModelProvider(this).get(ResultsViewModel::class.java)
 
         _binding = FragmentResultsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textResults
-        resultsViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
