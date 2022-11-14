@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_rankings">
+
+    <fragment
+        android:id="@+id/navigation_rankings"
+        android:name="com.korzhuck.foosball.ui.rankings.RankingsFragment"
+        android:label="@string/title_rankings"
+        tools:layout="@layout/fragment_rankings" />
+
+    <fragment
+        android:id="@+id/navigation_results"
+        android:name="com.korzhuck.foosball.ui.results.ResultsFragment"
+        android:label="@string/title_results"
+        tools:layout="@layout/fragment_results" />
+</navigation>

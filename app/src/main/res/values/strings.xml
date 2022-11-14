@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Foosball Matches</string>
+    <string name="title_rankings">Rankings</string>
+    <string name="title_results">Results</string>
+</resources>
