@@ -1,17 +1,20 @@
 package com.korzhuck.foosball
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.korzhuck.foosball.databinding.ActivityMainBinding
+import com.korzhuck.foosball.utils.State
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val viewModel : MainViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -35,5 +38,12 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        viewModel.state.observe(this) {
+            when (it) {
+                is State.Loading -> binding.progressBar.show()
+                is State.Success -> binding.progressBar.hide()
+            }
+        }
     }
 }
