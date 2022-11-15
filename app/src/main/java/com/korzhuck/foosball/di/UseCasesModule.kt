@@ -1,5 +1,7 @@
 package com.korzhuck.foosball.di
 
+import com.korzhuck.foosball.domain.usecase.GetAllResultsUseCase
+import com.korzhuck.foosball.domain.usecase.GetAllResultsUseCaseImpl
 import com.korzhuck.foosball.domain.usecase.LoadDataUseCase
 import com.korzhuck.foosball.domain.usecase.LoadDataUseCaseImpl
 import dagger.Binds
@@ -14,4 +16,9 @@ interface UseCasesModule {
     fun bindLoadData(
         loadData: LoadDataUseCaseImpl,
     ): LoadDataUseCase
+
+    @Binds
+    fun bindGetAllResults(
+        getAllResults: GetAllResultsUseCaseImpl,
+    ): GetAllResultsUseCase
 }
