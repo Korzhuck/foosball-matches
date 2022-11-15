@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.korzhuck.foosball.databinding.FragmentResultsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +36,17 @@ class ResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView(binding.resultsView)
+    }
+
+    private fun setupRecyclerView(
+        recyclerView: RecyclerView,
+    ) {
+        val resultsAdapter = ResultsAdapter()
+        recyclerView.adapter = resultsAdapter
         viewModel.results.observe(viewLifecycleOwner) {
-            binding.textResults.text = it.toString()
+            resultsAdapter.results = it
+            resultsAdapter.notifyDataSetChanged()
         }
     }
 }
