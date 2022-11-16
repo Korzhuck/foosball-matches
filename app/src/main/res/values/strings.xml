@@ -2,7 +2,9 @@
     <string name="app_name">Foosball Matches</string>
     <string name="title_rankings">Rankings</string>
     <string name="title_results">Results</string>
+    <string name="title_edit_match_result">Match Result</string>
     <string name="title_player">Player</string>
     <string name="title_wins">W</string>
     <string name="title_matches">M</string>
+    <string name="add">Add</string>
 </resources>

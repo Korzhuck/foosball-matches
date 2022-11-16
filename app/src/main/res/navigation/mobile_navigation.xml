@@ -15,5 +15,15 @@
         android:id="@+id/navigation_results"
         android:name="com.korzhuck.foosball.ui.results.ResultsFragment"
         android:label="@string/title_results"
-        tools:layout="@layout/fragment_results" />
+        tools:layout="@layout/fragment_results">
+        <action
+            android:id="@+id/to_edit_result"
+            app:destination="@id/navigation_edit_match_result" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_edit_match_result"
+        android:name="com.korzhuck.foosball.ui.edit.EditMatchResultFragment"
+        android:label="@string/title_edit_match_result"
+        tools:layout="@layout/fragment_edit_match_result" />
 </navigation>
