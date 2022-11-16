@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.korzhuck.foosball.databinding.FragmentRankingsBinding
+import com.korzhuck.foosball.domain.usecase.SortOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +38,8 @@ class RankingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView(binding.rankingsView)
+        binding.matches.setOnClickListener { viewModel.loadRankings(SortOrder.Matches) }
+        binding.wins.setOnClickListener { viewModel.loadRankings(SortOrder.Wins) }
     }
 
     private fun setupRecyclerView(

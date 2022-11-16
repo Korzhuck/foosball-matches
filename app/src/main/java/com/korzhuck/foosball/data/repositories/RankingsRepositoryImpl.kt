@@ -4,13 +4,12 @@ import com.korzhuck.foosball.data.source.InMemoryDataSource
 import com.korzhuck.foosball.domain.repositories.RankingsRepository
 import com.korzhuck.foosball.models.PlayerRanking
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class RankingsRepositoryImpl @Inject constructor(
     private val dataSource: InMemoryDataSource,
 ) : RankingsRepository {
-    override fun getAll(): Single<List<PlayerRanking>> =
+    override fun getAll(): Observable<PlayerRanking> =
         dataSource.matchesResults
             .flatMapObservable { Observable.fromIterable(it) }
             .flatMap { Observable.fromIterable(it.toRankings()) }
@@ -23,8 +22,5 @@ class RankingsRepositoryImpl @Inject constructor(
                         winsCount = aggregate.winsCount + result.winsCount
                     )
                 }
-            }
-            .toSortedList { o1, o2 ->
-                o1.winsCount.compareTo(o2.winsCount)
             }
 }
