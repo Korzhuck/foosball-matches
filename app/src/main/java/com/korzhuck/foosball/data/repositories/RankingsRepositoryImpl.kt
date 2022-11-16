@@ -5,8 +5,9 @@ import com.korzhuck.foosball.domain.repositories.RankingsRepository
 import com.korzhuck.foosball.models.PlayerRanking
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class RankingsRepositoryImpl(
+class RankingsRepositoryImpl @Inject constructor(
     private val dataSource: InMemoryDataSource,
 ) : RankingsRepository {
     override fun getAll(): Single<List<PlayerRanking>> =

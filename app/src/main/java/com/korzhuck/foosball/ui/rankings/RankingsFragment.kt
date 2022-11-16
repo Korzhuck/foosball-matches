@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.korzhuck.foosball.databinding.FragmentRankingsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,8 +29,8 @@ class RankingsFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textRankings
-        viewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        viewModel.rankings.observe(viewLifecycleOwner) {
+            textView.text = it.toString()
         }
         return root
     }

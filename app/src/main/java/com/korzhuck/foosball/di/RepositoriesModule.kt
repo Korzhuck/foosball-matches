@@ -1,6 +1,8 @@
 package com.korzhuck.foosball.di
 
+import com.korzhuck.foosball.data.repositories.RankingsRepositoryImpl
 import com.korzhuck.foosball.data.repositories.ResultsRepositoryImpl
+import com.korzhuck.foosball.domain.repositories.RankingsRepository
 import com.korzhuck.foosball.domain.repositories.ResultsRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,10 @@ interface RepositoriesModule {
     fun bindResultsRepository(
         resultsRepositoryImpl: ResultsRepositoryImpl,
     ): ResultsRepository
+
+    @Singleton
+    @Binds
+    fun bindRankingsRepository(
+        rankingsRepositoryImpl: RankingsRepositoryImpl,
+    ): RankingsRepository
 }
