@@ -16,60 +16,48 @@
         app:cardUseCompatPadding="true"
         app:cardElevation="@dimen/list_item_elevation"
                 >
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/list_item_vertical_padding"
             android:paddingHorizontal="@dimen/list_item_horizontal_padding"
             >
-
             <TextView
-                android:id="@+id/matches"
-                android:text="@{Integer.toString(ranking.matchesCount)}"
-                android:layout_width="wrap_content"
+                android:id="@+id/player_1"
+                android:text="@{ranking.player.name}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/list_item_vertical_padding"
-                android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+                android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constrainedWidth="true"
-                app:layout_constrainedHeight="true"
-                tools:text="5"
+                tools:text="Player 1"
                 />
 
             <TextView
                 android:id="@+id/wins"
                 android:text="@{Integer.toString(ranking.winsCount)}"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center"
                 android:paddingVertical="@dimen/list_item_vertical_padding"
                 android:paddingHorizontal="@dimen/list_item_horizontal_padding"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                app:layout_constraintTop_toTopOf="@id/matches"
-                app:layout_constraintBottom_toBottomOf="@id/matches"
-                app:layout_constraintEnd_toStartOf="@id/matches"
-                app:layout_constrainedWidth="true"
-                app:layout_constrainedHeight="true"
                 tools:text="2"
                 />
 
             <TextView
-                android:id="@+id/player_1"
-                android:text="@{ranking.player.name}"
-                android:layout_width="wrap_content"
+                android:id="@+id/matches"
+                android:text="@{Integer.toString(ranking.matchesCount)}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:paddingVertical="@dimen/list_item_vertical_padding"
+                android:paddingHorizontal="@dimen/list_item_horizontal_padding"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                app:layout_constraintTop_toTopOf="@id/matches"
-                app:layout_constraintBottom_toBottomOf="@id/matches"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/wins"
-                app:layout_constrainedWidth="true"
-                app:layout_constrainedHeight="true"
-                app:layout_constraintHorizontal_bias="0.0"
-                tools:text="Player 1"
+                tools:text="5"
                 />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

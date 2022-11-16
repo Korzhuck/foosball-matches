@@ -6,13 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".ui.rankings.RankingsFragment">
 
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/list_item_vertical_padding"
+        android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constrainedHeight="true"
+        >
+        <TextView
+            android:id="@+id/player"
+            android:text="@string/title_player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+
+        <TextView
+            android:id="@+id/wins"
+            android:text="@string/title_wins"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:paddingVertical="@dimen/list_item_vertical_padding"
+            android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+
+        <TextView
+            android:id="@+id/matches"
+            android:text="@string/title_matches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:paddingVertical="@dimen/list_item_vertical_padding"
+            android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:text="5"
+            />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rankings_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constrainedHeight="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
