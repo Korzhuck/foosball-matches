@@ -9,5 +9,5 @@ import javax.inject.Inject
 class ResultsRepositoryImpl @Inject constructor(
     private val dataSource: InMemoryDataSource,
 ) : ResultsRepository {
-    override fun getAll(): Single<List<MatchResult>> = dataSource.matches
+    override fun getAll(): Single<List<MatchResult>> = dataSource.matchesResults
 }

@@ -8,10 +8,10 @@ import javax.inject.Inject
 open class InMemoryDataSource @Inject constructor(
     matchResults: List<MatchResult>,
 ) {
-    private val _matches = matchResults.toMutableList()
+    private val _matchesResults = matchResults.toMutableList()
 
-    val matches: Single<List<MatchResult>>
-        get() = Single.just(_matches)
+    val matchesResults: Single<List<MatchResult>>
+        get() = Single.just(_matchesResults)
 
 
     companion object {
