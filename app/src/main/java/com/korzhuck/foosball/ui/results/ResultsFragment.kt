@@ -60,6 +60,7 @@ class ResultsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView(binding.resultsView)
+        viewModel.initialize()
     }
 
     private fun setupRecyclerView(

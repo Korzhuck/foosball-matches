@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.korzhuck.foosball.R
 import com.korzhuck.foosball.databinding.FragmentEditMatchResultBinding
+import com.korzhuck.foosball.models.MatchResult
+import com.korzhuck.foosball.models.Player
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +38,15 @@ class EditMatchResultFragment : Fragment() {
             when (menuItem.itemId) {
                 android.R.id.home -> findNavController().navigateUp()
                 R.id.save -> {
-                    viewModel.saveResult(args.matchResult)
+                    viewModel.saveResult(
+                        MatchResult(
+                            id = args.matchResult?.id ?: 0,
+                            player1 = Player(binding.player1.text.toString()),
+                            score1 = binding.score1.text.toString().toInt(),
+                            player2 = Player(binding.player2.text.toString()),
+                            score2 = binding.score2.text.toString().toInt(),
+                        )
+                    )
                     findNavController().navigateUp()
                     true
                 }

@@ -25,13 +25,11 @@ class EditMatchResultViewModel @Inject constructor(
         }
     }
 
-    fun saveResult(matchResult: MatchResult?) {
-        if (matchResult != null) {
-            saveResult.invoke(matchResult)
-                .subscribeOn(schedulers.io())
-                .observeOn(schedulers.main())
-                .subscribe()
-                .autoDispose()
-        }
+    fun saveResult(matchResult: MatchResult) {
+        saveResult.invoke(matchResult)
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.main())
+            .subscribe()
+            .autoDispose()
     }
 }

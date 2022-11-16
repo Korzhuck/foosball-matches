@@ -19,7 +19,7 @@ class RankingsViewModel @Inject constructor(
     private val _rankings = MutableLiveData<List<PlayerRanking>>()
     val rankings: LiveData<List<PlayerRanking>> = _rankings
 
-    init {
+    fun initialize() {
         loadRankings(SortOrder.Matches)
     }
 

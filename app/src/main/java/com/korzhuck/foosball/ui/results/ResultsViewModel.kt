@@ -11,13 +11,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResultsViewModel @Inject constructor(
-    getAllResults: GetAllResultsUseCase,
-    schedulers: AppSchedulers,
+    private val getAllResults: GetAllResultsUseCase,
+    private val schedulers: AppSchedulers,
 ) : BaseRxViewModel() {
     private val _results = MutableLiveData<List<MatchResult>>()
     val results: LiveData<List<MatchResult>> = _results
 
-    init {
+    fun initialize() {
         getAllResults()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())

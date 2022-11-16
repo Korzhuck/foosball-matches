@@ -40,6 +40,8 @@ class RankingsFragment : Fragment() {
         setupRecyclerView(binding.rankingsView)
         binding.matches.setOnClickListener { viewModel.loadRankings(SortOrder.Matches) }
         binding.wins.setOnClickListener { viewModel.loadRankings(SortOrder.Wins) }
+
+        viewModel.initialize()
     }
 
     private fun setupRecyclerView(
