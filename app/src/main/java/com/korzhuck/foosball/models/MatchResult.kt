@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MatchResult(
+    val id: Int,
     val player1: Player,
     val score1: Int,
     val player2: Player,
@@ -24,4 +25,12 @@ data class MatchResult(
     )
 
     private fun isFirstWin() = score1 > score2
+
+    override fun equals(other: Any?): Boolean {
+        return other is MatchResult && other.id == id
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
 }

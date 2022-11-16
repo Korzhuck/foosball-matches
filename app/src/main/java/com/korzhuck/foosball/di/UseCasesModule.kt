@@ -6,6 +6,10 @@ import com.korzhuck.foosball.domain.usecase.GetAllResultsUseCase
 import com.korzhuck.foosball.domain.usecase.GetAllResultsUseCaseImpl
 import com.korzhuck.foosball.domain.usecase.LoadDataUseCase
 import com.korzhuck.foosball.domain.usecase.LoadDataUseCaseImpl
+import com.korzhuck.foosball.domain.usecase.RemoveResultUseCase
+import com.korzhuck.foosball.domain.usecase.RemoveResultUseCaseImpl
+import com.korzhuck.foosball.domain.usecase.SaveResultUseCase
+import com.korzhuck.foosball.domain.usecase.SaveResultUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,4 +32,14 @@ interface UseCasesModule {
     fun bindGetAllRankings(
         getAllRankings: GetAllRankingsUseCaseImpl,
     ): GetAllRankingsUseCase
+
+    @Binds
+    fun bindRemoveResult(
+        removeResultUseCase: RemoveResultUseCaseImpl,
+    ): RemoveResultUseCase
+
+    @Binds
+    fun bindSaveResult(
+        saveResultUseCase: SaveResultUseCaseImpl,
+    ): SaveResultUseCase
 }

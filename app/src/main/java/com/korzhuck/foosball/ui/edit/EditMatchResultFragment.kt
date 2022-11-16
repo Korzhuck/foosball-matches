@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.korzhuck.foosball.R
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class EditMatchResultFragment : Fragment() {
     private val args: EditMatchResultFragmentArgs by navArgs()
+    private val viewModel: EditMatchResultViewModel by viewModels()
 
     private var _binding: FragmentEditMatchResultBinding? = null
 
@@ -34,10 +36,12 @@ class EditMatchResultFragment : Fragment() {
             when (menuItem.itemId) {
                 android.R.id.home -> findNavController().navigateUp()
                 R.id.save -> {
+                    viewModel.saveResult(args.matchResult)
                     findNavController().navigateUp()
                     true
                 }
                 R.id.delete -> {
+                    viewModel.removeResult(args.matchResult)
                     findNavController().navigateUp()
                     true
                 }
