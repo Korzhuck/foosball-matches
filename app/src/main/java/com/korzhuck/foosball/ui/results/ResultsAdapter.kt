@@ -18,7 +18,7 @@ class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = when (holder) {
-        is MatchResultViewHolder -> holder.bind(results[position])
+        is MatchResultViewHolder -> holder.bind(result = results[position])
     }
 
     override fun getItemCount(): Int = results.size
@@ -30,5 +30,4 @@ class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
             binding.result = result
         }
     }
-
 }

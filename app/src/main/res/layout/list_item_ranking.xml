@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="ranking"
+            type="com.korzhuck.foosball.models.PlayerRanking" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/list_item_elevation"
+                >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/list_item_vertical_padding"
+            android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+            >
+
+            <TextView
+                android:id="@+id/matches"
+                android:text="@{Integer.toString(ranking.matchesCount)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/list_item_vertical_padding"
+                android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constrainedWidth="true"
+                app:layout_constrainedHeight="true"
+                tools:text="5"
+                />
+
+            <TextView
+                android:id="@+id/wins"
+                android:text="@{Integer.toString(ranking.winsCount)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/list_item_vertical_padding"
+                android:paddingHorizontal="@dimen/list_item_horizontal_padding"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:layout_constraintTop_toTopOf="@id/matches"
+                app:layout_constraintBottom_toBottomOf="@id/matches"
+                app:layout_constraintEnd_toStartOf="@id/matches"
+                app:layout_constrainedWidth="true"
+                app:layout_constrainedHeight="true"
+                tools:text="2"
+                />
+
+            <TextView
+                android:id="@+id/player_1"
+                android:text="@{ranking.player.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:layout_constraintTop_toTopOf="@id/matches"
+                app:layout_constraintBottom_toBottomOf="@id/matches"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wins"
+                app:layout_constrainedWidth="true"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintHorizontal_bias="0.0"
+                tools:text="Player 1"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

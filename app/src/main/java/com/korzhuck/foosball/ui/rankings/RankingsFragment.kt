@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.korzhuck.foosball.databinding.FragmentRankingsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,17 +26,27 @@ class RankingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRankingsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textRankings
-        viewModel.rankings.observe(viewLifecycleOwner) {
-            textView.text = it.toString()
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView(binding.rankingsView)
+    }
+
+    private fun setupRecyclerView(
+        recyclerView: RecyclerView,
+    ) {
+        val rankingsAdapter = RankingsAdapter()
+        recyclerView.adapter = rankingsAdapter
+        viewModel.rankings.observe(viewLifecycleOwner) {
+            rankingsAdapter.rankings = it
+            rankingsAdapter.notifyDataSetChanged()
+        }
     }
 }
