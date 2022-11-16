@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultsFragment : Fragment() {
-    private val viewModel : ResultsViewModel by viewModels()
+    private val viewModel: ResultsViewModel by viewModels()
 
     private var _binding: FragmentResultsBinding? = null
 
@@ -34,7 +34,7 @@ class ResultsFragment : Fragment() {
         override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
             when (menuItem.itemId) {
                 R.id.add -> {
-                    findNavController().navigate(ResultsFragmentDirections.toEditResult())
+                    findNavController().navigate(ResultsFragmentDirections.toEditResult(null))
                     true
                 }
                 else -> false
@@ -65,7 +65,9 @@ class ResultsFragment : Fragment() {
     private fun setupRecyclerView(
         recyclerView: RecyclerView,
     ) {
-        val resultsAdapter = ResultsAdapter()
+        val resultsAdapter = ResultsAdapter(onMatchResultClicked = {
+            findNavController().navigate(ResultsFragmentDirections.toEditResult(it))
+        })
         recyclerView.adapter = resultsAdapter
         viewModel.results.observe(viewLifecycleOwner) {
             resultsAdapter.results = it

@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.korzhuck.foosball.databinding.ListItemResultBinding
 import com.korzhuck.foosball.models.MatchResult
 
-class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
+class ResultsAdapter(
+    private val onMatchResultClicked: (MatchResult) -> Unit,
+) : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
     var results = listOf<MatchResult>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -25,9 +27,12 @@ class ResultsAdapter : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class MatchResultViewHolder(private val binding: ListItemResultBinding) : ViewHolder(binding.root) {
+    inner class MatchResultViewHolder(private val binding: ListItemResultBinding) : ViewHolder(binding.root) {
         fun bind(result: MatchResult) {
             binding.result = result
+            binding.root.setOnClickListener {
+                onMatchResultClicked(result)
+            }
         }
     }
 }

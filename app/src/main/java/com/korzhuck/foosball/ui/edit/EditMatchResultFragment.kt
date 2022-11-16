@@ -10,12 +10,15 @@ import android.view.ViewGroup
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.korzhuck.foosball.R
 import com.korzhuck.foosball.databinding.FragmentEditMatchResultBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class EditMatchResultFragment : Fragment() {
+    private val args: EditMatchResultFragmentArgs by navArgs()
+
     private var _binding: FragmentEditMatchResultBinding? = null
 
     // This property is only valid between onCreateView and
@@ -56,5 +59,15 @@ class EditMatchResultFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         requireActivity().removeMenuProvider(menuProvider)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        args.matchResult?.let {
+            binding.player1.setText(it.player1.name)
+            binding.player2.setText(it.player2.name)
+            binding.score1.setText(it.score1.toString())
+            binding.score2.setText(it.score2.toString())
+        }
     }
 }

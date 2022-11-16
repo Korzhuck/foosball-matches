@@ -25,5 +25,11 @@
         android:id="@+id/navigation_edit_match_result"
         android:name="com.korzhuck.foosball.ui.edit.EditMatchResultFragment"
         android:label="@string/title_edit_match_result"
-        tools:layout="@layout/fragment_edit_match_result" />
+        tools:layout="@layout/fragment_edit_match_result">
+        <argument
+            android:name="match_result"
+            app:argType="com.korzhuck.foosball.models.MatchResult"
+            app:nullable="true"
+            />
+    </fragment>
 </navigation>

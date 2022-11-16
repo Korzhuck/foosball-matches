@@ -1,11 +1,15 @@
 package com.korzhuck.foosball.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class MatchResult(
     val player1: Player,
     val score1: Int,
     val player2: Player,
     val score2: Int,
-) {
+) : Parcelable {
     fun toRankings() = listOf(
         PlayerRanking(
             player = player1,
