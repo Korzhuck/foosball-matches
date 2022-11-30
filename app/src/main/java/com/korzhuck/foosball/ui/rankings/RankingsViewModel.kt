@@ -19,8 +19,13 @@ class RankingsViewModel @Inject constructor(
     private val _rankings = MutableLiveData<List<PlayerRanking>>()
     val rankings: LiveData<List<PlayerRanking>> = _rankings
 
+    private val _sortOrder = MutableLiveData<SortOrder>()
+    val sortOrder: LiveData<SortOrder> = _sortOrder
+
     fun initialize() {
-        loadRankings(SortOrder.Matches)
+        if (sortOrder.value == null) {
+            _sortOrder.value = DEFAULT_SORT_ORDER
+        }
     }
 
     fun loadRankings(sortOrder: SortOrder) {
@@ -31,5 +36,9 @@ class RankingsViewModel @Inject constructor(
                 _rankings.value = results
             }
             .autoDispose()
+    }
+
+    companion object {
+        private val DEFAULT_SORT_ORDER = SortOrder.Matches
     }
 }

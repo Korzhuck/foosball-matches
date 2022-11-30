@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.AppCompat.Subhead.Selectable">
+        <item name="android:textColor">@color/selectable_text</item>
+    </style>
+</resources>

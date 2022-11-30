@@ -35,7 +35,7 @@
             android:gravity="center"
             android:paddingVertical="@dimen/list_item_vertical_padding"
             android:paddingHorizontal="@dimen/list_item_horizontal_padding"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:textAppearance="?attr/textAppearanceSelectable"
             />
 
         <TextView
@@ -47,7 +47,7 @@
             android:gravity="center"
             android:paddingVertical="@dimen/list_item_vertical_padding"
             android:paddingHorizontal="@dimen/list_item_horizontal_padding"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:textAppearance="?attr/textAppearanceSelectable"
             tools:text="5"
             />
 

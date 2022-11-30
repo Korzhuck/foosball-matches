@@ -58,8 +58,11 @@ class RankingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView(binding.rankingsView)
-        binding.matches.setOnClickListener { viewModel.loadRankings(SortOrder.Matches) }
-        binding.wins.setOnClickListener { viewModel.loadRankings(SortOrder.Wins) }
+        viewModel.sortOrder.observe(viewLifecycleOwner) { sortOrder ->
+            viewModel.loadRankings(sortOrder)
+            binding.matches.isSelected = sortOrder == SortOrder.Matches
+            binding.wins.isSelected = sortOrder == SortOrder.Wins
+        }
 
         viewModel.initialize()
     }
