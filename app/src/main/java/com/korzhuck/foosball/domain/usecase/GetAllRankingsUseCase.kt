@@ -2,19 +2,19 @@ package com.korzhuck.foosball.domain.usecase
 
 import com.korzhuck.foosball.domain.repositories.RankingsRepository
 import com.korzhuck.foosball.models.PlayerRanking
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 interface GetAllRankingsUseCase {
-    operator fun invoke(sortOrder: SortOrder): Single<List<PlayerRanking>>
+    operator fun invoke(sortOrder: SortOrder): Observable<List<PlayerRanking>>
 }
 
 class GetAllRankingsUseCaseImpl @Inject constructor(
     private val rankingsRepository: RankingsRepository,
 ) : GetAllRankingsUseCase {
-    override fun invoke(sortOrder: SortOrder): Single<List<PlayerRanking>> =
+    override fun invoke(sortOrder: SortOrder): Observable<List<PlayerRanking>> =
         rankingsRepository.getAll()
-        .toSortedList(sortOrder.comparator)
+        .map {  it.sortedWith(sortOrder.comparator) }
 }
 
 enum class SortOrder(val comparator: Comparator<PlayerRanking>) {

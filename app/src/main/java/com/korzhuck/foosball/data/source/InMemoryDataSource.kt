@@ -3,7 +3,8 @@ package com.korzhuck.foosball.data.source
 import com.korzhuck.foosball.models.MatchResult
 import com.korzhuck.foosball.models.Player
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.Subject
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -13,14 +14,13 @@ open class InMemoryDataSource @Inject constructor(
     private var nextId = matchResults.size
     private val _matchesResults = matchResults.toMutableList()
 
-    val matchesResults: Single<List<MatchResult>>
-        get() = Single.just(_matchesResults)
+    val matchesResults: Subject<List<MatchResult>> = BehaviorSubject.createDefault(_matchesResults)
 
     fun removeResult(matchResult: MatchResult): Completable =
         Completable.create {
             this._matchesResults.remove(matchResult)
             it.onComplete()
-        }
+        }.doOnComplete { matchesResults.onNext(_matchesResults) }
 
     fun saveResult(matchResult: MatchResult): Completable =
         Completable.create {
@@ -31,12 +31,13 @@ open class InMemoryDataSource @Inject constructor(
                 this._matchesResults[index] = matchResult
             }
             it.onComplete()
-        }
+        }.doOnComplete { matchesResults.onNext(_matchesResults) }
 
     fun loadResults(): Completable =
         // timer is used to show some interaction
         Completable.timer(1, TimeUnit.SECONDS)
             .doOnComplete { _matchesResults.addAll(initialResults) }
+            .doOnComplete { matchesResults.onNext(_matchesResults) }
 
     companion object {
         val initialResults = listOf(
