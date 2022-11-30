@@ -8,6 +8,7 @@ import com.korzhuck.foosball.models.PlayerRanking
 import com.korzhuck.foosball.ui.base.BaseRxViewModel
 import com.korzhuck.foosball.utils.AppSchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.kotlin.plusAssign
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,13 +30,12 @@ class RankingsViewModel @Inject constructor(
     }
 
     fun loadRankings(sortOrder: SortOrder) {
-        getAllRankings(sortOrder)
+        disposables += getAllRankings(sortOrder)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())
             .subscribe { results ->
                 _rankings.value = results
             }
-            .autoDispose()
     }
 
     fun onSortChanged(sortOrder: SortOrder) {

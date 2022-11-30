@@ -6,6 +6,7 @@ import com.korzhuck.foosball.utils.AppSchedulers
 import com.korzhuck.foosball.models.MatchResult
 import com.korzhuck.foosball.ui.base.BaseRxViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.kotlin.plusAssign
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,19 +18,17 @@ class EditMatchResultViewModel @Inject constructor(
 
     fun removeResult(matchResult: MatchResult?) {
         if (matchResult != null) {
-            removeResult.invoke(matchResult)
+            disposables += removeResult.invoke(matchResult)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.main())
                 .subscribe()
-                .autoDispose()
         }
     }
 
     fun saveResult(matchResult: MatchResult) {
-        saveResult.invoke(matchResult)
+        disposables += saveResult.invoke(matchResult)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())
             .subscribe()
-            .autoDispose()
     }
 }

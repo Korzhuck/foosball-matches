@@ -7,6 +7,7 @@ import com.korzhuck.foosball.models.MatchResult
 import com.korzhuck.foosball.ui.base.BaseRxViewModel
 import com.korzhuck.foosball.utils.AppSchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.kotlin.plusAssign
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,12 +19,11 @@ class ResultsViewModel @Inject constructor(
     val results: LiveData<List<MatchResult>> = _results
 
     fun initialize() {
-        getAllResults()
+        disposables += getAllResults()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())
             .subscribe { results ->
                 _results.value = results
             }
-            .autoDispose()
     }
 }

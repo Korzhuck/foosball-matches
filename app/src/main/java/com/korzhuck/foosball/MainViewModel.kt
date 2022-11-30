@@ -7,6 +7,7 @@ import com.korzhuck.foosball.ui.base.BaseRxViewModel
 import com.korzhuck.foosball.utils.AppSchedulers
 import com.korzhuck.foosball.utils.State
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.kotlin.plusAssign
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,12 +22,11 @@ class MainViewModel @Inject constructor(
     val state: LiveData<State<Unit>> = _state
 
     init {
-        loadData()
+        disposables += loadData()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.main())
             .subscribe {
                 _state.value = State.Success(Unit)
             }
-            .autoDispose()
     }
 }
