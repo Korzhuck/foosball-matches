@@ -12,5 +12,5 @@ interface GetAllResultsUseCase {
 class GetAllResultsUseCaseImpl @Inject constructor(
     private val resultsRepository: ResultsRepository,
 ) : GetAllResultsUseCase {
-    override fun invoke(): Observable<List<MatchResult>> = resultsRepository.getAll()
+    override fun invoke(): Observable<List<MatchResult>> = resultsRepository.allResults
 }

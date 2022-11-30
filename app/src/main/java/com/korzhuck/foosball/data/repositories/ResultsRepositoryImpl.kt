@@ -10,7 +10,8 @@ import javax.inject.Inject
 class ResultsRepositoryImpl @Inject constructor(
     private val dataSource: InMemoryDataSource,
 ) : ResultsRepository {
-    override fun getAll(): Observable<List<MatchResult>> = dataSource.matchesResults
+    override val allResults: Observable<List<MatchResult>>
+        get() = dataSource.matchesResults
 
     override fun removeResult(matchResult: MatchResult): Completable =
         dataSource.removeResult(matchResult)

@@ -32,8 +32,8 @@ class RankingsFragment : Fragment() {
 
         override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
             when (menuItem.itemId) {
-                R.id.by_matches -> viewModel.onSortChanged(SortOrder.Matches).let { true }
-                R.id.by_wins -> viewModel.onSortChanged(SortOrder.Wins).let { true }
+                R.id.by_matches -> viewModel.sortOrder.onNext(SortOrder.Matches).let { true }
+                R.id.by_wins -> viewModel.sortOrder.onNext(SortOrder.Wins).let { true }
                 else -> false
             }
     }
@@ -57,8 +57,7 @@ class RankingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView(binding.rankingsView)
-        viewModel.sortOrder.observe(viewLifecycleOwner) { sortOrder ->
-            viewModel.loadRankings(sortOrder)
+        viewModel.sortOrder.subscribe { sortOrder ->
             binding.matches.isSelected = sortOrder == SortOrder.Matches
             binding.wins.isSelected = sortOrder == SortOrder.Wins
         }

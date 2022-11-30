@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 
 interface ResultsRepository {
-    fun getAll(): Observable<List<MatchResult>>
+    val allResults: Observable<List<MatchResult>>
 
     fun removeResult(matchResult: MatchResult): Completable
 
