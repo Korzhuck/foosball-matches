@@ -1,14 +1,15 @@
 package com.korzhuck.foosball.domain.usecase
 
+import com.korzhuck.foosball.domain.repositories.ResultsRepository
 import io.reactivex.rxjava3.core.Completable
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface LoadDataUseCase {
     operator fun invoke(): Completable
 }
 
-class LoadDataUseCaseImpl @Inject constructor() : LoadDataUseCase {
-    override fun invoke(): Completable =
-        Completable.timer(2, TimeUnit.SECONDS)
+class LoadDataUseCaseImpl @Inject constructor(
+    private val resultsRepository: ResultsRepository,
+) : LoadDataUseCase {
+    override fun invoke(): Completable = resultsRepository.loadResults()
 }

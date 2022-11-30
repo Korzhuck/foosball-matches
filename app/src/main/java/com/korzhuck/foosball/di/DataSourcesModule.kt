@@ -13,6 +13,6 @@ object DataSourcesModule {
     @Singleton
     @Provides
     fun provideInMemoryDataSource() = InMemoryDataSource(
-        matchResults = InMemoryDataSource.initialResults,
+        matchResults = emptyList(),
     )
 }

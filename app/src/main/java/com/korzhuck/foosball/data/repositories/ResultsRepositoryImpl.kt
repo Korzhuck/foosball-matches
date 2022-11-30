@@ -19,4 +19,7 @@ class ResultsRepositoryImpl @Inject constructor(
 
     override fun saveResult(matchResult: MatchResult): Completable =
         dataSource.saveResult(matchResult)
+
+    override fun loadResults(): Completable =
+        dataSource.loadResults()
 }

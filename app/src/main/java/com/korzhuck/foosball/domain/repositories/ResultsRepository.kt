@@ -10,4 +10,6 @@ interface ResultsRepository {
     fun removeResult(matchResult: MatchResult): Completable
 
     fun saveResult(matchResult: MatchResult): Completable
+
+    fun loadResults(): Completable
 }

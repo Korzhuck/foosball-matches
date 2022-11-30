@@ -4,6 +4,7 @@ import com.korzhuck.foosball.models.MatchResult
 import com.korzhuck.foosball.models.Player
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 open class InMemoryDataSource @Inject constructor(
@@ -31,6 +32,11 @@ open class InMemoryDataSource @Inject constructor(
             }
             it.onComplete()
         }
+
+    fun loadResults(): Completable =
+        // timer is used to show some interaction
+        Completable.timer(1, TimeUnit.SECONDS)
+            .doOnComplete { _matchesResults.addAll(initialResults) }
 
     companion object {
         val initialResults = listOf(
