@@ -51,7 +51,6 @@ class RankingsFragment : Fragment() {
         recyclerView.adapter = rankingsAdapter
         viewModel.rankings.observe(viewLifecycleOwner) {
             rankingsAdapter.rankings = it
-            rankingsAdapter.notifyDataSetChanged()
         }
     }
 }

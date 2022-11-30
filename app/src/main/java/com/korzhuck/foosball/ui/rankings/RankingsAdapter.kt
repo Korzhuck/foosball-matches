@@ -1,5 +1,6 @@
 package com.korzhuck.foosball.ui.rankings
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,11 @@ import com.korzhuck.foosball.models.PlayerRanking
 
 class RankingsAdapter : RecyclerView.Adapter<RankingsAdapter.ViewHolder>() {
     var rankings = listOf<PlayerRanking>()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         PlayerRankingViewHolder(
@@ -25,7 +31,8 @@ class RankingsAdapter : RecyclerView.Adapter<RankingsAdapter.ViewHolder>() {
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    class PlayerRankingViewHolder(private val binding: ListItemRankingBinding) : ViewHolder(binding.root) {
+    class PlayerRankingViewHolder(private val binding: ListItemRankingBinding) :
+        ViewHolder(binding.root) {
         fun bind(ranking: PlayerRanking) {
             binding.ranking = ranking
         }
