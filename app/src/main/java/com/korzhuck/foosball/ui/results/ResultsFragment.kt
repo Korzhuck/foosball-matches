@@ -72,7 +72,6 @@ class ResultsFragment : Fragment() {
         recyclerView.adapter = resultsAdapter
         viewModel.results.observe(viewLifecycleOwner) {
             resultsAdapter.results = it
-            resultsAdapter.notifyDataSetChanged()
         }
     }
 }

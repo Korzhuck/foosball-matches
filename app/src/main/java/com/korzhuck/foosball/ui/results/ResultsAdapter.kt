@@ -1,5 +1,6 @@
 package com.korzhuck.foosball.ui.results
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,11 @@ class ResultsAdapter(
     private val onMatchResultClicked: (MatchResult) -> Unit,
 ) : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
     var results = listOf<MatchResult>()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         MatchResultViewHolder(
@@ -27,7 +33,8 @@ class ResultsAdapter(
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    inner class MatchResultViewHolder(private val binding: ListItemResultBinding) : ViewHolder(binding.root) {
+    inner class MatchResultViewHolder(private val binding: ListItemResultBinding) :
+        ViewHolder(binding.root) {
         fun bind(result: MatchResult) {
             binding.result = result
             binding.root.setOnClickListener {
