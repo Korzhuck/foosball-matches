@@ -13,4 +13,6 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="sort">Sort</string>
+    <string name="by_wins">By Wins</string>
+    <string name="by_matches">By Matches</string>
 </resources>

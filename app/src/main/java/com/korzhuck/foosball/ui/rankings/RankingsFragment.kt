@@ -32,9 +32,8 @@ class RankingsFragment : Fragment() {
 
         override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
             when (menuItem.itemId) {
-                R.id.sort -> {
-                    true
-                }
+                R.id.by_matches -> viewModel.onSortChanged(SortOrder.Matches).let { true }
+                R.id.by_wins -> viewModel.onSortChanged(SortOrder.Wins).let { true }
                 else -> false
             }
     }

@@ -4,6 +4,15 @@
     <item android:id="@+id/sort"
         android:icon="@drawable/ic_sort_48"
         android:title="@string/sort"
-        app:showAsAction="always"
-        />
+        app:showAsAction="ifRoom"
+        >
+        <menu>
+            <item android:id="@+id/by_wins"
+                android:title="@string/by_wins"
+                app:showAsAction="never" />
+            <item android:id="@+id/by_matches"
+                android:title="@string/by_matches"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
 </menu>

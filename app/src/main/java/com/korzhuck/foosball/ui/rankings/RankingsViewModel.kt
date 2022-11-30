@@ -38,6 +38,10 @@ class RankingsViewModel @Inject constructor(
             .autoDispose()
     }
 
+    fun onSortChanged(sortOrder: SortOrder) {
+        _sortOrder.value = sortOrder
+    }
+
     companion object {
         private val DEFAULT_SORT_ORDER = SortOrder.Matches
     }
