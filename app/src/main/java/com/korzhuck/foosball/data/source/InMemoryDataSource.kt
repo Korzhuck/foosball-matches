@@ -11,7 +11,6 @@ import javax.inject.Inject
 open class InMemoryDataSource @Inject constructor(
     matchResults: List<MatchResult>,
 ) {
-    private var nextId = matchResults.size
     private val _matchesResults = matchResults.toMutableList()
 
     val matchesResults: Subject<List<MatchResult>> = BehaviorSubject.createDefault(_matchesResults)
@@ -26,7 +25,7 @@ open class InMemoryDataSource @Inject constructor(
         Completable.create {
             val index = this._matchesResults.indexOf(matchResult)
             if (index == -1) {
-                this._matchesResults.add(matchResult.copy(id = nextId++))
+                this._matchesResults.add(matchResult.copy(id = _matchesResults.size))
             } else {
                 this._matchesResults[index] = matchResult
             }
